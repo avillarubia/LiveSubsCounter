@@ -1,0 +1,4 @@
+{
+  "apiEndpoint": "https://www.googleapis.com/youtube/v3/channels?part=statistics,snippet&forUsername=Pewdiepie&key=",
+  "apiKey": ""
+}

@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import http from "./services/httpService";
+import config from "./config.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    snippet: {},
+    statistics: {}
+  };
+
+  async componentDidMount() {
+    setInterval(async () => {
+      const { data: channels } = await http.get(
+        config.apiEndpoint + config.apiKey
+      );
+
+      const channel = channels.items[0];
+      const snippet = channel.snippet;
+      const statistics = channel.statistics;
+
+      this.setState({ snippet, statistics });
+      console.log(channels);
+    }, 1000);
+  }
+
+  render() {
+    return (
+      <h1>
+        {this.state.snippet.title} :
+        <span className="odometer">
+          {this.state.statistics.subscriberCount}
+        </span>
+      </h1>
+    );
+  }
 }
 
 export default App;
