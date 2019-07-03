@@ -3,8 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "../node_modules/odometer/themes/odometer-theme-default.css";
+import "odometer/themes/odometer-theme-default.css"; //../node_modules/
 import "odometer/odometer";
+import "bootstrap/dist/css/bootstrap.css";
+import "font-awesome/css/font-awesome.css";
+import "./extendedStyles.css";
+import "./display.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
