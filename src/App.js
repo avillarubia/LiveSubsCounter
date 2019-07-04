@@ -10,7 +10,8 @@ class App extends Component {
     query: "",
     name: "",
     imageUrl: "",
-    subscriberCount: 0
+    subscriberCount: 0,
+    chartHistory: [{ subscriberCount: 0 }]
   };
 
   constructor() {
@@ -41,12 +42,16 @@ class App extends Component {
   }
 
   setStateValues(query, channel) {
+    var subscriberCount = channel.statistics.subscriberCount;
+
     this.setState({
       query: query,
       name: channel.snippet.title,
       imageUrl: channel.snippet.thumbnails.default.url,
-      subscriberCount: channel.statistics.subscriberCount
+      subscriberCount: subscriberCount
     });
+
+    this.state.chartHistory.push({ subscriberCount });
   }
 
   resetStateValues() {
@@ -102,18 +107,17 @@ class App extends Component {
             name={name}
             subscriberCount={subscriberCount}
           />
-          <Chart />
 
-          <p className="lead">
-            Cover is a one-page template for building simple and beautiful home
-            pages. Download, edit the text, and add your own fullscreen
-            background photo to make it your own.
-          </p>
-          <p className="lead">
+          {this.state.chartHistory.length > 1 ? (
+            <Chart series={this.state.chartHistory} />
+          ) : null}
+          <p className="lead" />
+
+          {/* <p className="lead">
             <a href="/" className="btn btn-lg btn-secondary">
               Learn more
             </a>
-          </p>
+          </p> */}
         </main>
 
         <footer className="mastfoot mt-auto">
