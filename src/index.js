@@ -7,8 +7,8 @@ import "odometer/themes/odometer-theme-default.css"; //../node_modules/
 import "odometer/odometer";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-import "./extendedStyles.css";
-import "./display.css";
+import "./styles/main.css";
+import "./styles/display.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

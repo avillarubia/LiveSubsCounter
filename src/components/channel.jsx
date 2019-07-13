@@ -1,5 +1,5 @@
 import React from "react";
-import Odometer from "../common/odometer";
+import Odometer from "./common/odometer";
 
 const Channel = props => {
   let { imageUrl, name, subscriberCount } = props;
