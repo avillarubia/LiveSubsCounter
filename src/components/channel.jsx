@@ -2,7 +2,7 @@ import React from "react";
 import Odometer from "./common/odometer";
 
 const Channel = props => {
-  let { imageUrl, name, subscriberCount } = props;
+  let { imageUrl, name, subsCount } = props;
   let textAlign = { textAlign: "center" }; //common
 
   return (
@@ -23,7 +23,7 @@ const Channel = props => {
           </tr>
           <tr>
             <td>
-              <Odometer subsCount={subscriberCount} />
+              <Odometer subsCount={subsCount} />
             </td>
           </tr>
         </tbody>
