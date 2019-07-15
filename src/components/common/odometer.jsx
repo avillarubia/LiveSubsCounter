@@ -1,4 +1,6 @@
 import React from "react";
+import "odometer/odometer.js";
+import "odometer/themes/odometer-theme-default.css";
 
 const Odometer = ({ subsCount }) => {
   const odometerStyles = { fontSize: "70px", textAlign: "center" };

@@ -43,12 +43,13 @@ class Live extends Component {
   }
 
   setStateValues(query, channel) {
+    const subsCount = channel.statistics.subscriberCount;
     this.setState(prevState => ({
       query: query,
       prevQuery: query,
       name: channel.snippet.title,
       imageUrl: channel.snippet.thumbnails.default.url,
-      subsCount: channel.statistics.subscriberCount
+      subsCount: subsCount
       // chartHistory: [
       //   ...prevState.chartHistory,
       //   { subsCount: subsCount }
@@ -92,9 +93,7 @@ class Live extends Component {
         <h1 className="cover-heading">Whose channel is that?</h1>
         <SearchBox onKeyPress={this.handleKeyPress} />
         <Channel imageUrl={imageUrl} name={name} subsCount={subsCount} />
-
         {this.displayChart(subsCount)}
-
         <p className="lead" />
 
         {/* <p className="lead">

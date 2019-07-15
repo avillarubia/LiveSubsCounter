@@ -2,7 +2,7 @@ import React from "react";
 import Odometer from "./common/odometer";
 
 const Channel = props => {
-  let { imageUrl, name, subsCount } = props;
+  const { imageUrl, name, subsCount } = props;
   let textAlign = { textAlign: "center" }; //common
 
   return (
