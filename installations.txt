@@ -1,2 +1,7 @@
 bootstrap
 font-awesome
+react-router-dom
+axios
+highcharts
+odometer
+lodash
