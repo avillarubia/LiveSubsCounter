@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import http from "../services/httpService";
-import apiQuery from "../config/api";
+import { constructEndpoint } from "../config/api.js";
 import Channel from "./channel";
 import SearchBox from "./common/search";
 import Chart from "./common/chart";
@@ -29,7 +29,7 @@ class Live extends Component {
       const { query, prevQuery } = this.state;
       if (query.trim() !== "") {
         const { data: channels } = await http.get(
-          this.constructApiEndpoint(query)
+          constructEndpoint("forUsername", query)
         );
         if (channels.items !== null && channels.items.length > 0) {
           const channel = channels.items[0];
@@ -43,7 +43,7 @@ class Live extends Component {
   }
 
   setStateValues(query, channel) {
-    const subsCount = channel.statistics.subscriberCount;
+    const subsCount = _.parseInt(channel.statistics.subscriberCount);
     this.setState(prevState => ({
       query: query,
       prevQuery: query,
@@ -61,18 +61,6 @@ class Live extends Component {
     this.setState(this.baseState);
   }
 
-  constructApiEndpoint(query) {
-    const apiEndpoint =
-      process.env.REACT_APP_API_URL +
-      "part=" +
-      apiQuery.part +
-      "&forUsername=" +
-      query +
-      "&key=" +
-      process.env.REACT_APP_API_KEY;
-    return apiEndpoint;
-  }
-
   handleKeyPress = e => {
     const query = e.currentTarget.value;
     if (e.key === "Enter") {
@@ -80,27 +68,24 @@ class Live extends Component {
     }
   };
 
-  displayChart(subsCount) {
-    return subsCount > 1 ? <Chart subsCount={subsCount} /> : null;
+  dispay(name, imageUrl, subsCount) {
+    return subsCount > 1 ? (
+      <React.Fragment>
+        <Channel imageUrl={imageUrl} name={name} subsCount={subsCount} />
+        <Chart subsCount={subsCount} />
+        <p className="lead" />
+      </React.Fragment>
+    ) : null;
   }
 
   render() {
     let { name, imageUrl, subsCount } = this.state;
-    subsCount = _.parseInt(subsCount);
 
     return (
       <React.Fragment>
         <h1 className="cover-heading">Whose channel is that?</h1>
         <SearchBox onKeyPress={this.handleKeyPress} />
-        <Channel imageUrl={imageUrl} name={name} subsCount={subsCount} />
-        {this.displayChart(subsCount)}
-        <p className="lead" />
-
-        {/* <p className="lead">
-                    <a href="/" className="btn btn-lg btn-secondary">
-                    Learn more
-                    </a>
-                </p> */}
+        {this.dispay(name, imageUrl, subsCount)}
       </React.Fragment>
     );
   }
