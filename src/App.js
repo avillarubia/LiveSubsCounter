@@ -11,6 +11,7 @@ class App extends Component {
     return (
       <div className="text-center cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <NavBar />
+
         <main role="main" className="inner cover">
           <Switch>
             <Route path="/live" component={Live} />

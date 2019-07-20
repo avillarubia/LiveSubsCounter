@@ -8,6 +8,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "./styles/main.css";
 import "./styles/display.css";
+import "./styles/spinner.css";
+import "odometer/odometer";
+import "odometer/themes/odometer-theme-default.css";
 
 ReactDOM.render(
   <BrowserRouter>
