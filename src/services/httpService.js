@@ -2,7 +2,7 @@ import axios from "axios";
 //import logService from "./logServices";
 //import { toast } from "react-toastify";
 
-axios.interceptors.response.use(null, error => {
+var interceptor = axios.interceptors.response.use(null, error => {
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
@@ -15,6 +15,11 @@ axios.interceptors.response.use(null, error => {
   return Promise.reject(error);
 });
 
+function ejectRequest() {
+  axios.interceptors.request.eject(interceptor);
+}
+
 export default {
-  get: axios.get
+  get: axios.get,
+  ejectRequest: ejectRequest()
 };

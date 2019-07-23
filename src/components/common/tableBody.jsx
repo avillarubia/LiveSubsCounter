@@ -1,7 +1,8 @@
 import React from "react";
-import _ from "lodash";
 import NumberFormat from "react-number-format";
 import Tooltip from "react-tooltips";
+import ChannelDetails from "./channelDetails";
+import _ from "lodash";
 
 const Body = ({ channels }) => {
   return (
@@ -9,14 +10,18 @@ const Body = ({ channels }) => {
       {channels.map(channel => (
         <tr key={channel._id}>
           <td className="py-1">{getRank(channels, channel)}</td>
-          {/* <Tooltip
-            content="This is the tooltip content"
-            event="hover"
-            placement="right"
-            eventDelay={0}
-          > */}
-          <td className="py-1">{channel.name}</td>
-          {/* </Tooltip> */}
+
+          <td className="py-1">
+            <Tooltip
+              content="This is the tooltip content"
+              component={<ChannelDetails channel={channel} />}
+              event="hover"
+              placement="right"
+              eventDelay={0}
+            >
+              {channel.name}
+            </Tooltip>
+          </td>
 
           <td className="py-1">
             <NumberFormat

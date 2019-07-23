@@ -3,6 +3,7 @@ import http from "../services/httpService";
 import { constructEndpoint } from "../config/api.js";
 import Table from "./common/table";
 import Spinner from "./common/spinner";
+import { sleep } from "./../utils/sleep";
 import _ from "lodash";
 
 class Home extends Component {
@@ -25,7 +26,7 @@ class Home extends Component {
 
   async componentDidMount() {
     const channels = await this.getChannels();
-    //await sleep(2000);
+    await sleep(2000);
     this.setState({ channels });
   }
 

@@ -1,16 +1,11 @@
 import React from "react";
 
 const Odometer = ({ subsCount }) => {
-  const odometerStyles = { fontSize: "70px", textAlign: "center" };
-  // const hideStyle = { visibility: "hidden" };
-  // const styles =
-  //   subsCount > 0 ? odometerStyles : { ...odometerStyles, ...hideStyle };
+  var style = { fontSize: "70px", textAlign: "center" };
   return (
-    <React.Fragment>
-      <p style={odometerStyles} className="odometer">
-        {subsCount}
-      </p>
-    </React.Fragment>
+    <p style={style} id="odometer" className="odometer">
+      {subsCount}
+    </p>
   );
 };
 

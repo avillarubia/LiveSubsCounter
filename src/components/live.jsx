@@ -68,10 +68,9 @@ class Live extends Component {
     }
   };
 
-  dispay(name, imageUrl, subsCount) {
+  display(subsCount) {
     return subsCount > 1 ? (
       <React.Fragment>
-        <Channel imageUrl={imageUrl} name={name} subsCount={subsCount} />
         <Chart subsCount={subsCount} />
         <p className="lead" />
       </React.Fragment>
@@ -84,8 +83,9 @@ class Live extends Component {
     return (
       <React.Fragment>
         <h1 className="cover-heading">Whose channel is that?</h1>
-        <SearchBox onKeyPress={this.handleKeyPress} />
-        {this.dispay(name, imageUrl, subsCount)}
+        <SearchBox onKeyPress={this.handleKeyPress} />{" "}
+        <Channel imageUrl={imageUrl} name={name} subsCount={subsCount} />
+        {this.display(subsCount)}
       </React.Fragment>
     );
   }

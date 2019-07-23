@@ -9,8 +9,9 @@ import "font-awesome/css/font-awesome.css";
 import "./styles/main.css";
 import "./styles/display.css";
 import "./styles/spinner.css";
-import "odometer/odometer";
-import "odometer/themes/odometer-theme-default.css";
+import "./styles/tooltip.css";
+import "odometer/odometer.js";
+import "odometer/themes/odometer-theme-car.css";
 
 ReactDOM.render(
   <BrowserRouter>
