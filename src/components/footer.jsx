@@ -6,8 +6,9 @@ const Footer = () => {
       <footer className="mastfoot mt-auto">
         <div className="inner">
           <p>
-            Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>
-            , by <a href="https://twitter.com/aljohnyamaro">@yamaro</a>.
+            Created by <a href="https://twitter.com/aljohnyamaro">@yamaro</a>
+            <br />
+            <small>©2019 version 1.0</small>
           </p>
         </div>
       </footer>

@@ -2,7 +2,6 @@ import React from "react";
 import NumberFormat from "react-number-format";
 
 const ChannelDetails = ({ channel }) => {
-  console.log(channel.imageUrl);
   return (
     <React.Fragment>
       <div id="tooltip" className=".text-center">
@@ -10,7 +9,7 @@ const ChannelDetails = ({ channel }) => {
           <tbody>
             <tr>
               <td>
-                <img src={channel.imageUrl} />
+                <img src={channel.imageUrl} alt={channel.imageUrl} />
               </td>
             </tr>
             <tr>

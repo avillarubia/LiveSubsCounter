@@ -11,7 +11,7 @@ import "./styles/display.css";
 import "./styles/spinner.css";
 import "./styles/tooltip.css";
 import "odometer/odometer.js";
-import "odometer/themes/odometer-theme-car.css";
+import "odometer/themes/odometer-theme-default.css";
 
 ReactDOM.render(
   <BrowserRouter>

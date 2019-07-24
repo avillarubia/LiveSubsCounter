@@ -132,3 +132,8 @@ body {
 .odometer-hide {
   visibility: hidden;
 }
+/*Table*/
+.table th,
+.table td {
+  border-top: none !important;
+}

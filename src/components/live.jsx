@@ -83,7 +83,9 @@ class Live extends Component {
     return (
       <React.Fragment>
         <h1 className="cover-heading">Whose channel is that?</h1>
-        <SearchBox onKeyPress={this.handleKeyPress} />{" "}
+        <br />
+        <SearchBox onKeyPress={this.handleKeyPress} />
+        <br />
         <Channel imageUrl={imageUrl} name={name} subsCount={subsCount} />
         {this.display(subsCount)}
       </React.Fragment>

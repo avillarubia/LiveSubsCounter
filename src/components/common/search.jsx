@@ -5,9 +5,10 @@ const Search = ({ onKeyPress }) => {
   return (
     <div className="common-component">
       <input
+        style={{ backgroundColor: "#333", color: "#fff" }}
         type="text"
         name="query"
-        className="justify-content-center form-control col-md-4"
+        className="input-sm justify-content-center form-control col-md-4"
         placeholder="Enter channel name..."
         onKeyPress={e => onKeyPress(e)}
       />

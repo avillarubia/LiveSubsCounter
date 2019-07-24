@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/navbar";
 import Home from "./components/home";
 import Live from "./components/live";
-import Contact from "./components/contact";
+import About from "./components/about";
 import Footer from "./components/footer";
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
         <main role="main" className="inner cover">
           <Switch>
             <Route path="/live" component={Live} />
-            <Route path="/contact" component={Contact} />
+            <Route path="/about" component={About} />
             <Route path="/" component={Home} />
           </Switch>
         </main>

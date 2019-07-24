@@ -5,3 +5,4 @@ axios
 highcharts
 odometer
 lodash
+tooltip

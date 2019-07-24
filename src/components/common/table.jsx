@@ -5,10 +5,12 @@ import Body from "./tableBody";
 const Table = ({ channels }) => {
   return (
     //was className=table-dark
-    <table className="table" style={{ maxWidth: "500px" }}>
-      <Header />
-      <Body channels={channels} />
-    </table>
+    <div className="row justify-content-center">
+      <table className="table" style={{ maxWidth: "600px" }}>
+        <Header />
+        <Body channels={channels} />
+      </table>
+    </div>
   );
 };
 

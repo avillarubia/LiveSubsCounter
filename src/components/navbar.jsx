@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <header className="masthead mb-auto">
       <div className="inner">
-        <h3 className="masthead-brand">Social Figures</h3>
+        <h3 className="masthead-brand">Social Live Counter</h3>
         <nav className="nav nav-masthead justify-content-center">
           <Link className="nav-link" to="/">
             {/*nav-link active*/}
@@ -14,8 +14,8 @@ const NavBar = () => {
           <Link className="nav-link" to="/live">
             Live
           </Link>
-          <Link className="nav-link" to="/contact">
-            Contact
+          <Link className="nav-link" to="/about">
+            About
           </Link>
         </nav>
       </div>
