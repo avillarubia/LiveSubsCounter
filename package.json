@@ -8,6 +8,7 @@
     "download": "^7.1.0",
     "font-awesome": "^4.7.0",
     "highcharts": "^7.1.2",
+    "joi-browser": "^13.4.0",
     "lodash": "^4.17.14",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

@@ -6,3 +6,4 @@ highcharts
 odometer
 lodash
 tooltip
+joi
