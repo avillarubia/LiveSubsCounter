@@ -5,6 +5,7 @@ import Channel from "./channel";
 import SearchBox from "./common/search";
 import Chart from "./common/chart";
 import _ from "lodash";
+import Joi from "joi-browser";
 
 class Live extends Component {
   state = {
@@ -12,8 +13,11 @@ class Live extends Component {
     prevQuery: "",
     name: "",
     imageUrl: "",
-    subsCount: 0
+    subsCount: 0,
+    error: ""
   };
+
+  schema = Joi.string().required();
 
   constructor() {
     super();
@@ -27,11 +31,14 @@ class Live extends Component {
   fetchRealTimeData() {
     setInterval(async () => {
       const { query, prevQuery } = this.state;
+
       if (query.trim() !== "") {
+        var param = this.getParam(query);
+
         const { data: channels } = await http.get(
-          constructEndpoint("forUsername", query)
+          constructEndpoint(param, query)
         );
-        if (channels.items !== null && channels.items.length > 0) {
+        if (this.hasChannels(channels)) {
           const channel = channels.items[0];
           if (prevQuery !== query) {
             this.resetStateValues();
@@ -40,6 +47,18 @@ class Live extends Component {
         } else this.resetStateValues();
       }
     }, 1000);
+  }
+
+  getParam(query) {
+    return this.isID(query) ? "id" : "forUsername";
+  }
+
+  hasChannels(channels) {
+    return channels.items !== null && channels.items.length > 0;
+  }
+
+  isID(query) {
+    return query.length === 24 && query.startsWith("UC");
   }
 
   setStateValues(query, channel) {
@@ -64,9 +83,16 @@ class Live extends Component {
   handleKeyPress = e => {
     const query = e.currentTarget.value;
     if (e.key === "Enter") {
-      this.setState({ query });
+      var error = this.validate(query);
+      this.setState({ query, error });
     }
   };
+
+  validate(query) {
+    var { error } = Joi.validate(query, this.schema);
+    if (!error) return "";
+    return error.details[0].message;
+  }
 
   display(subsCount) {
     return subsCount > 1 ? (
@@ -78,13 +104,13 @@ class Live extends Component {
   }
 
   render() {
-    let { name, imageUrl, subsCount } = this.state;
+    let { name, imageUrl, subsCount, error } = this.state;
 
     return (
       <React.Fragment>
         <h1 className="cover-heading">Whose channel is that?</h1>
         <br />
-        <SearchBox onKeyPress={this.handleKeyPress} />
+        <SearchBox onKeyPress={this.handleKeyPress} error={error} />
         <br />
         <Channel imageUrl={imageUrl} name={name} subsCount={subsCount} />
         {this.display(subsCount)}
