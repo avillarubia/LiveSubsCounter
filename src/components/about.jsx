@@ -12,7 +12,7 @@ const About = () => {
         For this very first version is youtube and I am planning to add more
         social media in the future.
       </p>
-      <h1>Thank you!</h1>
+      <h1>Thank you</h1>
     </React.Fragment>
   );
 };

@@ -31,22 +31,24 @@ class Live extends Component {
   fetchRealTimeData() {
     setInterval(async () => {
       const { query, prevQuery } = this.state;
-
-      if (query.trim() !== "") {
+      if (query) {
         var param = this.getParam(query);
-
-        const { data: channels } = await http.get(
-          constructEndpoint(param, query)
-        );
-        if (this.hasChannels(channels)) {
-          const channel = channels.items[0];
-          if (prevQuery !== query) {
-            this.resetStateValues();
-          }
-          this.setStateValues(query, channel);
-        } else this.resetStateValues();
+        var endpoint = constructEndpoint(param, query);
+        const { data: channels } = await http.get(endpoint);
+        this.setStateValues(channels, prevQuery, query);
       }
     }, 1000);
+  }
+
+  setStateValues(channels, prevQuery, query) {
+    if (this.hasChannels(channels)) {
+      const channel = channels.items[0];
+      if (prevQuery !== query) this.resetStateValues();
+      this.setStateValuesFromResponse(query, channel);
+    } else {
+      this.resetStateValues();
+      this.setState({ error: "No channel found." });
+    }
   }
 
   getParam(query) {
@@ -61,7 +63,7 @@ class Live extends Component {
     return query.length === 24 && query.startsWith("UC");
   }
 
-  setStateValues(query, channel) {
+  setStateValuesFromResponse(query, channel) {
     const subsCount = _.parseInt(channel.statistics.subscriberCount);
     this.setState(prevState => ({
       query: query,
@@ -95,12 +97,7 @@ class Live extends Component {
   }
 
   display(subsCount) {
-    return subsCount > 1 ? (
-      <React.Fragment>
-        <Chart subsCount={subsCount} />
-        <p className="lead" />
-      </React.Fragment>
-    ) : null;
+    return subsCount > 1 ? <Chart subsCount={subsCount} /> : null;
   }
 
   render() {
