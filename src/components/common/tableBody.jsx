@@ -16,7 +16,7 @@ const Body = ({ channels }) => {
               content="This is the tooltip content"
               component={<ChannelDetails channel={channel} />}
               event="hover"
-              placement="top"
+              placement="right"
               eventDelay={0}
             >
               {channel.name}

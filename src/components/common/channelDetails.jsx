@@ -4,7 +4,7 @@ import NumberFormat from "react-number-format";
 const ChannelDetails = ({ channel }) => {
   return (
     <React.Fragment>
-      <div id="tooltip" className=".text-center">
+      <div id="tooltip">
         <table>
           <tbody>
             <tr>

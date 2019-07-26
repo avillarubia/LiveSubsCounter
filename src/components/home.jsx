@@ -57,6 +57,7 @@ class Home extends Component {
     return (
       <React.Fragment>
         <h1 className="cover-heading">Top Youtube Channels</h1>
+        <br />
         {channels.length > 0 ? <Table channels={channels} /> : <Spinner />}
       </React.Fragment>
     );
