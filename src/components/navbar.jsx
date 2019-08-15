@@ -24,7 +24,7 @@ class NavBar extends Component {
     return (
       <header className="masthead mb-auto">
         <div className="inner">
-          <h5 className="masthead-brand">Social Live Counter</h5>
+          <h5 className="masthead-brand">Live Social Counter</h5>
           <nav className="nav nav-masthead justify-content-center">
             {this.menus.map(menu => (
               <Link

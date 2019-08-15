@@ -33,8 +33,13 @@ class Live extends Component {
       const { query, prevQuery } = this.state;
       if (query) {
         var param = this.getParam(query);
-        var endpoint = constructEndpoint(param, query);
-        const { data: channels } = await http.get(endpoint);
+        const { data: channels } = await http.post(
+          process.env.REACT_APP_API_URL,
+          {
+            param,
+            query
+          }
+        );
         this.setStateValues(channels, prevQuery, query);
       }
     }, 1000);
