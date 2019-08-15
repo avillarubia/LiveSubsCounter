@@ -33,23 +33,23 @@ class Live extends Component {
       const { query, prevQuery } = this.state;
       if (query) {
         var param = this.getParam(query);
-        const { data: channels } = await http.post(
+        const { data: channel } = await http.post(
           process.env.REACT_APP_API_URL,
           {
             param,
             query
           }
         );
-        this.setStateValues(channels, prevQuery, query);
+        this.setStateValues(channel, prevQuery);
       }
     }, 1000);
   }
 
-  setStateValues(channels, prevQuery, query) {
-    if (this.hasChannels(channels)) {
-      const channel = channels.items[0];
+  setStateValues(channel, prevQuery) {
+    if (channel) {
+      const { query, name, imageUrl, subsCount } = channel;
       if (prevQuery !== query) this.resetStateValues();
-      this.setStateValuesFromResponse(query, channel);
+      this.setState({ query, prevQuery: query, name, imageUrl, subsCount });
     } else {
       this.resetStateValues();
       this.setState({ error: "No channel found." });
@@ -60,27 +60,8 @@ class Live extends Component {
     return this.isID(query) ? "id" : "forUsername";
   }
 
-  hasChannels(channels) {
-    return channels.items !== null && channels.items.length > 0;
-  }
-
   isID(query) {
     return query.length === 24 && query.startsWith("UC");
-  }
-
-  setStateValuesFromResponse(query, channel) {
-    const subsCount = _.parseInt(channel.statistics.subscriberCount);
-    this.setState(prevState => ({
-      query: query,
-      prevQuery: query,
-      name: channel.snippet.title,
-      imageUrl: channel.snippet.thumbnails.default.url,
-      subsCount: subsCount
-      // chartHistory: [
-      //   ...prevState.chartHistory,
-      //   { subsCount: subsCount }
-      // ]
-    }));
   }
 
   resetStateValues() {
