@@ -21,5 +21,6 @@ function ejectRequest() {
 
 export default {
   get: axios.get,
+  post: axios.post,
   ejectRequest: ejectRequest()
 };
