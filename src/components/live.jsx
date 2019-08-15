@@ -17,6 +17,8 @@ class Live extends Component {
     error: ""
   };
 
+  intervalRequest;
+
   schema = Joi.string().required();
 
   constructor() {
@@ -28,8 +30,12 @@ class Live extends Component {
     this.fetchRealTimeData();
   }
 
+  componentWillUnmount() {
+    clearInterval(this.intervalRequest);
+  }
+
   fetchRealTimeData() {
-    setInterval(async () => {
+    intervalRequest = setInterval(async () => {
       const { query, prevQuery } = this.state;
       if (query) {
         var param = this.getParam(query);
