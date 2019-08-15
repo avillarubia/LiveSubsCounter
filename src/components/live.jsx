@@ -7,6 +7,8 @@ import Chart from "./common/chart";
 import _ from "lodash";
 import Joi from "joi-browser";
 
+let intervalRequest;
+
 class Live extends Component {
   state = {
     query: "",
@@ -16,8 +18,6 @@ class Live extends Component {
     subsCount: 0,
     error: ""
   };
-
-  intervalRequest;
 
   schema = Joi.string().required();
 
@@ -31,7 +31,7 @@ class Live extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalRequest);
+    clearInterval(intervalRequest);
   }
 
   fetchRealTimeData() {
