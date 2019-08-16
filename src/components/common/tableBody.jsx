@@ -8,7 +8,7 @@ const Body = ({ channels }) => {
   return (
     <tbody>
       {channels.map(channel => (
-        <tr key={channel._id}>
+        <tr key={channel.query}>
           <td className="py-1">{getRank(channels, channel)}</td>
 
           <td className="py-1">

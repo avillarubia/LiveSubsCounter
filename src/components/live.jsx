@@ -37,20 +37,14 @@ class Live extends Component {
     intervalRequest = setInterval(async () => {
       const { query, prevQuery } = this.state;
       if (query) {
-        var param = this.getParam(query);
-        try {
-          const { data: channel } = await http.post(
-            process.env.REACT_APP_API_URL,
-            {
-              param,
-              query
-            }
-          );
-          console.log(channel);
-          this.setStateValues(channel, prevQuery);
-        } catch (err) {
-          console.log(err);
-        }
+        var api = process.env.REACT_APP_API_URL;
+        var reqBody = {
+          param: this.getParam(query),
+          query
+        };
+        const channel = await http.post(api, reqBody);
+
+        this.setStateValues(channel, prevQuery);
       }
     }, 1000);
   }

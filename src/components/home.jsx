@@ -31,26 +31,21 @@ class Home extends Component {
   }
 
   async getChannels() {
-    var _channels = [];
+    var channels = [];
     await Promise.all(
       this.topChannels.map(async topId => {
-        const { data: channels } = await http.get(
-          constructEndpoint("id", topId)
-        );
-        const channel = channels.items[0];
-        const subsCount = _.parseInt(channel.statistics.subscriberCount);
-        const mapped = {
-          _id: topId,
-          name: channel.snippet.title,
-          imageUrl: channel.snippet.thumbnails.default.url,
-          subsCount: subsCount
+        var api = process.env.REACT_APP_API_URL;
+        var reqBody = {
+          param: "id",
+          query: topId
         };
-        _channels.push(mapped);
+        const channel = await http.post(api, reqBody);
+        channels.push(channel);
       })
     );
 
-    _channels = _.orderBy(_channels, ["subsCount"], ["desc"]);
-    return _channels;
+    channels = _.orderBy(channels, ["subsCount"], ["desc"]);
+    return channels;
   }
 
   display(channels) {
