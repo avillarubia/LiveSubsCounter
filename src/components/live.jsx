@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import http from "../services/httpService";
-import { constructEndpoint } from "../config/api.js";
 import Channel from "./channel";
 import SearchBox from "./common/search";
 import Chart from "./common/chart";
@@ -52,7 +51,7 @@ class Live extends Component {
   }
 
   setStateValues(channel, prevQuery) {
-    if (channel) {
+    if (channel.subsCount) {
       const { query, name, imageUrl, subsCount } = channel;
       if (prevQuery !== query) this.resetStateValues();
       this.setState({ query, prevQuery: query, name, imageUrl, subsCount });
